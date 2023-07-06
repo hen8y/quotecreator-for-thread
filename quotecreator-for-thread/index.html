@@ -86,16 +86,28 @@
           font-weight:bold;
           margin-top: 50px;
         }
-        input, textarea{
+        .input, textarea{
             width: 100%;
             height: 50px;
             background-color: #fff;
-            padding-left: 10px;
             border-radius: 10px;
             font-weight: bold;
             margin-top: 5px;
             border: #343434d4 solid 2px;
             outline: none;
+            padding-left: 10px;
+        }
+        .input{
+            display: flex;
+            align-items: center;
+        }
+        input{
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            padding-left: 2px;
         }
         textarea{
             padding: 10px;
@@ -160,8 +172,12 @@
                         <div class="btn" id="upload-button" aria-labelledby="image" aria-describedby="image" >Upload DP</div>
                     </div>
                 <div style="clear: both;"></div>
+
                 <label for="name">Thread/Twitter Username</label>
-                <input type="text" name="name" placeholder="@o.hen8y" id="name">
+                <div class="input">
+                    <p>@</p>
+                    <input type="text" name="name" placeholder="o.hen8y" id="name">
+                </div>
                     <br><br>
                 <label for="content">Content <em>150 words</em></label>
                 <textarea type="text" name="content" placeholder="Enter Thread/Tweet" id="content" maxlength="150"></textarea>
