@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no "> 
     <meta name="author" content="@o.hen8y on thread app">
-    <meta name="url" content="https://quote-generator.e-henry.com/"/>
+    <meta name="url" content="https://e-henry.com//quote-generator"/>
     <meta name="description" content="Quote Generator for thread/Twitter"/>
     <title>Quote Generator</title>
     <style>
@@ -45,6 +45,11 @@
         }
         form label{
             margin: 5px;
+        }
+        em{
+            color: #532c2ac9;
+            font-style: normal;
+            font-size: 10px;
         }
         #preview{
             display: grid;
@@ -94,7 +99,7 @@
         }
         textarea{
             padding: 10px;
-            height: 90px;
+            height: 80px;
             resize: none;
             overflow: hidden;
         }
@@ -110,19 +115,35 @@
             box-shadow: 2px 2px 10px #9a9898;
             margin-top: 30px;
         }
-        .colors-container{
+        footer{
+            background-color: #1a1919ef;
+            color: #d4dada;
+            height: 100px;
+            padding:10px 0px 30px 30px;
+            font-size: 13px;
+            bottom: 0;
+            width: 100%;
+        }
+        .socials{
+            margin-bottom:5px;
             display: grid;
-            grid-template-columns: auto auto auto auto auto;
-            margin-top: 10px;
+            grid-template-columns: auto auto auto ;
         }
-        .color{
-            border: #212b36c0 solid 2px;
-            width: 50px;
-            height: 50px;
-            border-radius: 5px;
-            color: transparent;
-            cursor: pointer;
+        .a:hover{
+            color: #23EE2D;
         }
+        a{
+            text-decoration: none;
+            color: #d4dada;
+        }
+        .dot {
+            height: 8px;
+            width: 8px;
+            background-color: #23EE2D;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 3px;
+        } 
     </style>
     
 </head>
@@ -132,32 +153,31 @@
             <div class="logo">Quote Generator for thread/Twitter</div>
         </div>
        
-        <form method="post" action="" id="mainForm" onsubmit="return false">
+        <form method="post" action="submit.php" enctype="multipart/form-data">
                 <input type="file" name="file" id="image" accept="image/*" required/>
                     <div id="preview" >
                         <div id="avatar"></div>
                         <div class="btn" id="upload-button" aria-labelledby="image" aria-describedby="image" >Upload DP</div>
                     </div>
                 <div style="clear: both;"></div>
-                <label for="name">Thread/Twitter Username</p>
-                <input type="text" placeholder="@o.hen8y">
+                <label for="name">Thread/Twitter Username</label>
+                <input type="text" name="name" placeholder="@o.hen8y" id="name">
                     <br><br>
-                <label for="content">Content </p>
-                <textarea type="text" placeholder="Enter Thread/Tweet"></textarea>
+                <label for="content">Content <em>150 words</em></label>
+                <textarea type="text" name="content" placeholder="Enter Thread/Tweet" id="content" maxlength="150"></textarea>
                 <br>
-                <input type="text" name="backgroundColor" id="backgroundColor" value="" hidden>
-                <p>Choose Background Color</p>
-                <div class="colors-container">
-                    <div class="color" style="background-color: #00aaff3a;" id="light-blue" onclick="covert('00aaff3a')"></div>
-                    <input type="button" class="color" style="background-color: #00ff333a;" id="light-green" value="00ff333a">
-                    <input type="button" class="color" style="background-color: #ff37003a;" id="light-red" value="ff37003a">
-                    <input type="button" class="color" style="background-color: #fff2003a;" id="light-yello" value="fff2003a">
-                    <input type="button" class="color" style="background-color: #6f6f6f3a;" id="light-ash" value="6f6f6f3a">
-                </div>
-                <div id="hh"></div>
-            <button type="submit">Continue</button>
+            <button type="submit" name="submit">Continue</button>
         </form>
     </div>
+    <footer >
+       <h2 class="connect">Connect With Me</h2>
+       <br>
+        <div class="socials">
+            <div class="span"><a href="https://www.threads.net/@o.hen8y" target="_blank" class="a"> <span class="dot"></span>Thread</a></div>
+            <div class="span"><a href="https://www.instagram.com/o.hen8y/" target="_blank" class="a"><span class="dot"></span>Instagram</a></div>
+            <div class="span"><a href="https://twitter.com/hen8y" target="_blank" class="a"><span class="dot"></span> Twitter</a></div>
+        </div>
+    </footer>
     <script>
         const UPLOAD_BUTTON = document.getElementById("upload-button");
         const FILE_INPUT = document.querySelector("input[type=file]");
@@ -176,12 +196,6 @@
             AVATAR.style.background = `url(${reader.result}) center center/cover`;
           };
         });
-    </script>
-    <script>
-        function convert(color){
-            const backgroundColor = document.getElementById('backgroundColor').value;
-            return backgroundColor = color;
-        }
     </script>
 </body>
 </html>
