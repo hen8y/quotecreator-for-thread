@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no "> 
+    <meta name="author" content="@o.hen8y on thread app">
+    <meta name="url" content="https://quote-generator.e-henry.com/"/>
+    <meta name="description" content="Quote Generator for thread/Twitter"/>
+    <title>Quote Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #212B36;
+            font-size: 14px;
+            background-color: #f2f2f2;
+        }
+        @media only screen and (min-width:580px)  {
+            form{
+                width: 400px;
+                margin: auto;
+            }
+        }
+        .nav{
+            background-color: #fff;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: #ddd 1px solid;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        form{
+            padding: 20px;
+        }
+        form label{
+            margin: 5px;
+        }
+        #preview{
+            display: grid;
+            grid-template-columns: 170px auto;
+        }
+        #avatar {
+          background-color: rgb(225, 238, 249);
+          height: 150px;
+          width: 150px;
+          border: 3px solid #0af;
+          border: #1b1b1bab 2px solid;
+          border-radius: 50%;
+          transition: background ease-out 200ms;
+          margin-right:20px;
+          margin-bottom: 30px;
+        }
+        input[type="file"] {
+          display: none;
+        }
+        .btn {
+          height: 40px;
+          width: 150px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          background-color: #2e9ded;
+          box-shadow: 0px 3px 5px #707070;
+          transition: background-color ease-out 120ms;
+          color:#fff;
+          display:flex;
+          font-size: 13px;
+          align-items:center;
+          justify-content:center;
+          font-weight:bold;
+          margin-top: 50px;
+        }
+        input, textarea{
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            padding-left: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 5px;
+            border: #343434d4 solid 2px;
+            outline: none;
+        }
+        textarea{
+            padding: 10px;
+            height: 90px;
+            resize: none;
+            overflow: hidden;
+        }
+        button{
+            width: 100%;
+            height: 50px;
+            border: none;
+            background-color: #2e9ded;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom:80px;
+            box-shadow: 2px 2px 10px #9a9898;
+            margin-top: 30px;
+        }
+        .colors-container{
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            margin-top: 10px;
+        }
+        .color{
+            border: #212b36c0 solid 2px;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            color: transparent;
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+<body oncontextmenu=" return disableRightClick();">
+    <div class="main">
+        <div class="nav">           
+            <div class="logo">Quote Generator for thread/Twitter</div>
+        </div>
+       
+        <form method="post" action="" id="mainForm" onsubmit="return false">
+                <input type="file" name="file" id="image" accept="image/*" required/>
+                    <div id="preview" >
+                        <div id="avatar"></div>
+                        <div class="btn" id="upload-button" aria-labelledby="image" aria-describedby="image" >Upload DP</div>
+                    </div>
+                <div style="clear: both;"></div>
+                <label for="name">Thread/Twitter Username</p>
+                <input type="text" placeholder="@o.hen8y">
+                    <br><br>
+                <label for="content">Content </p>
+                <textarea type="text" placeholder="Enter Thread/Tweet"></textarea>
+                <br>
+                <input type="text" name="backgroundColor" id="backgroundColor" value="" hidden>
+                <p>Choose Background Color</p>
+                <div class="colors-container">
+                    <div class="color" style="background-color: #00aaff3a;" id="light-blue" onclick="covert('00aaff3a')"></div>
+                    <input type="button" class="color" style="background-color: #00ff333a;" id="light-green" value="00ff333a">
+                    <input type="button" class="color" style="background-color: #ff37003a;" id="light-red" value="ff37003a">
+                    <input type="button" class="color" style="background-color: #fff2003a;" id="light-yello" value="fff2003a">
+                    <input type="button" class="color" style="background-color: #6f6f6f3a;" id="light-ash" value="6f6f6f3a">
+                </div>
+                <div id="hh"></div>
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+    <script>
+        const UPLOAD_BUTTON = document.getElementById("upload-button");
+        const FILE_INPUT = document.querySelector("input[type=file]");
+        const AVATAR = document.getElementById("avatar");
+        
+        UPLOAD_BUTTON.addEventListener("click", () => FILE_INPUT.click());
+        
+        FILE_INPUT.addEventListener("change", event => {
+          const file = event.target.files[0];
+        
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+        
+          reader.onloadend = () => {
+            AVATAR.setAttribute("aria-label", file.name);
+            AVATAR.style.background = `url(${reader.result}) center center/cover`;
+          };
+        });
+    </script>
+    <script>
+        function convert(color){
+            const backgroundColor = document.getElementById('backgroundColor').value;
+            return backgroundColor = color;
+        }
+    </script>
+</body>
+</html>
